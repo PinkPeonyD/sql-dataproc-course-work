@@ -1,38 +1,47 @@
-# Music content database
+# Music Content Database
 
-1. Run OLTP:
-    1.1. Create_tables.sql script;
-    1.2. Load_data_from_CSV.sql script (change path inside script);
-    1.3. Queries_based_on_OLTP.sql script;
-2. Run OLAP:
-    2.1. Create_tables.sql script;
-    2.2. Load_data_from_OLTP_to_OLAP.sql script (change dbname and user_name inside script);
-    2.3. Queries_based_on_OLAP.sql script;
-3. Explanation of why there is a genres table and why it is not connected to other tables
+## 1. Run OLTP
+1.1. Execute the `Create_tables.sql` script.  
+1.2. Execute the `Load_data_from_CSV.sql` script (ensure to modify the path inside the script as needed).  
+1.3. Execute the `Queries_based_on_OLTP.sql` script.
 
-   The genres table in this script serves as a reference table designed to manage musical genres. The primary reasons for using this table are as follows:
+## 2. Run OLAP
+2.1. Execute the `Create_tables.sql` script.  
+2.2. Execute the `Load_data_from_OLTP_to_OLAP.sql` script (ensure to modify the `dbname` and `user_name` inside the script).  
+2.3. Execute the `Queries_based_on_OLAP.sql` script.
 
-   3.1. Simplified Genre Management
-   The genres table centralizes information about musical genres. This simplifies the process of adding, modifying, or deleting genres.
-   For example, if a genre needs correction (e.g., due to a typo), it is sufficient to update the record in the genres table rather than updating it for every song.
+## 3. Explanation of the `genres` Table and Its Isolation
 
-   3.2. Avoiding Data Duplication
-   Storing genres as plain text in the songs table can lead to duplication issues (e.g., "Rock", "rock", or "Rock ").
-   By using a separate genres table, unique genres are stored as individual records. In the songs table, a foreign key (GenreID) references genres.GenreID, ensuring consistency and avoiding redundancy.
+The `genres` table in this script serves as a reference table designed to manage musical genres. Below are the key reasons for including this table and the rationale for its current disconnected state:
 
-   3.3. Improved Performance
-   The genres table helps save database space by using numerical identifiers (GenreID) instead of storing lengthy strings (genre names) in the songs table.
-   Searching and sorting operations are faster when dealing with numerical fields rather than strings.
+### 3.1. Simplified Genre Management
+- The `genres` table centralizes information about musical genres, simplifying updates or modifications.
+- Example: Correcting a typo in a genre name can be done once in the `genres` table instead of updating it for each song entry.
 
-   3.4. Flexibility and Scalability
-   If additional attributes need to be added to genres (e.g., "genre description" or "popularity"), this can be done without altering the structure of the songs table.
-   The genres table can also be linked to other tables in the future (e.g., artists if genres also apply to performers).
+### 3.2. Avoiding Data Duplication
+- Storing genres directly in the `songs` table may lead to inconsistencies (e.g., "Rock", "rock", or "Rock ").
+- Using a separate `genres` table ensures that unique genres are stored as individual records.
+- The `songs` table can reference genres via a foreign key (`GenreID`), maintaining consistency and eliminating redundancy.
 
-   3.5. Connections Within the Script Context
-   In this script, the genres table is not directly linked to the songs table. Instead, genres are stored as a textual field (Genre) within the songs table, leaving the genres table isolated from the main logic.
-   However, it can be utilized to:
+### 3.3. Improved Performance
+- Using numerical identifiers (`GenreID`) in the `songs` table saves space compared to storing long genre strings.
+- Operations like searching and sorting are faster when using numerical fields instead of strings.
 
-   Replace the Genre text field in the songs table with a foreign key (GenreID).
-   Establish a relationship such as songs.GenreID -> genres.GenreID.
-   
-   The genres table is valuable for maintaining data integrity and structure, minimizing redundancy, improving performance, and allowing for the database's scalability and flexibility.
+### 3.4. Flexibility and Scalability
+- Additional attributes, such as "genre description" or "popularity," can be added to the `genres` table without altering the structure of the `songs` table.
+- The `genres` table can be linked to other tables in the future, such as connecting genres to artists if they are associated with performers.
+
+### 3.5. Connections Within the Script Context
+- Currently, the `genres` table is not directly linked to the `songs` table.
+- Genres are stored as a textual field (`Genre`) in the `songs` table, leaving the `genres` table isolated from the main logic.
+- Future improvements could involve:
+    - Replacing the `Genre` text field in the `songs` table with a foreign key (`GenreID`).
+    - Establishing a relationship such as `songs.GenreID -> genres.GenreID`.
+
+### Conclusion
+The `genres` table is a vital part of database design, offering:
+- **Data integrity** through centralized genre management.
+- **Efficiency** by avoiding redundancy and improving performance.
+- **Scalability** for future database enhancements.
+
+Although isolated in the current script, the `genres` table can play a significant role in ensuring a well-structured and flexible database. 
