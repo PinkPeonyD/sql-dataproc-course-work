@@ -1,0 +1,11 @@
+Name,Email,PasswordHash,RegistrationDate
+Alice,alice@example.com,23567b3c448c6f1e3bacfe047c554683ede6e47417c10975621d5aa4361a710f,2023-01-01
+Bob,bob@example.com,588ad422376865f38dbe13bb8f640be411dc2be25ff0ed6b19da614ee35da83b,2023-01-02
+Charlie,charlie@example.com,ff4a73bd8b38995a777c392597b21401efe382bdabb7d2d18962fdab0f2232ec,2023-01-03
+Diana,diana@example.com,6b26d081434c56edab6b416a70eea7a4ad4dcfb2a35baacda611db8675dfb635,2023-01-04
+Eve,eve@example.com,b17e6010af7ba9f726f41c540e9999d83b9ccd523d1e8fe383474557b06a6c6c,2023-01-05
+Frank,frank@example.com,be66a8e2e6e6466dd81bd15ba94da4fd7a8939e23807f3e4a2ea4843bdaa7f1c,2023-01-06
+Grace,grace@example.com,bd11e7aef5d75d850f608e5c73d26701e1febc5edbd4064b4c0db584a725dcf8,2023-01-07
+Heidi,heidi@example.com,c2cdfa90d187ccf02c19d7cdccde042d634c5a349bfd75a196e1a41676ed8c05,2023-01-08
+Ivan,ivan@example.com,68f1924693e31feb61ad81bd2b648bab59d9834091cb907633a7128a5c81cf05,2023-01-09
+Judy,judy@example.com,549b9386e93ee3dfe7851cb5745132e7accbf4d7cccfc28d3be2c59e66de854f,2023-01-10
